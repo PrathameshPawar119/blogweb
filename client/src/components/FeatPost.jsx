@@ -26,12 +26,13 @@ const FeatPost = () => {
     };
     fetchData();
   }, []);
+  console.log(blogPosts);
   return (
     <>
       <div className="container ">
         <h2 className="text-4xl font-bold">Recent Posts</h2>
         <div className="mt-6 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-          {blogPosts.map((post, index) => {
+          {blogPosts.slice(0, 3).map((post, index) => {
             const formattedDate = new Date(post.date).toLocaleDateString(
               "en-US",
               {
@@ -46,7 +47,7 @@ const FeatPost = () => {
                 <div className="sm:min-w-[32%] min-w-full gap-2 flex-1 h-[55vh] overflow-hidden flex items-start justify-center flex-col">
                   <div className="h-2/3 w-full p-3 border-2 border-black">
                     <img
-                      src={post.img}
+                      src={post.imageUrl}
                       alt="image"
                       className="w-full rounded-xl h-full object-cover hover:scale-105 transition-all"
                     />

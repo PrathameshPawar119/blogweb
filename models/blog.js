@@ -7,10 +7,6 @@ const tagsSchema = new mongoose.Schema({
 });
 
 const postSchema = new mongoose.Schema({
-  userName: {
-    type: String,
-    required: true,
-  },
   title: {
     type: String,
     required: true,
@@ -23,7 +19,7 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  img: {
+  image: {
     type: String,
     required: true,
   },

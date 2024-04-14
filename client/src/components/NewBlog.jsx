@@ -13,7 +13,7 @@ const NewBlog = () => {
     title: "",
     description: "",
     content: "",
-    imgUrl: "",
+    image: "",
     tags: [],
   });
 
@@ -46,7 +46,7 @@ const NewBlog = () => {
         title: "",
         description: "",
         content: "",
-        imgUrl: "",
+        image: "",
         tags: [],
       });
       setValue1([]);
@@ -102,8 +102,8 @@ const NewBlog = () => {
               <Form.Label>Thumbnail image URL</Form.Label>
               <Form.Control
                 onChange={handleChange}
-                value={blog.imgUrl}
-                name="imgUrl"
+                value={blog.image}
+                name="image"
                 type="text"
               />
             </Form.Group>

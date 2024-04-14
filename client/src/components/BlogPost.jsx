@@ -63,7 +63,7 @@ const BlogPost = () => {
         </div>
         <div className="sm:w-2/3 w-full border-2 border-black flex items-center justify-center flex-col">
           <div className="border-2 border-black w-full h-full max-h-96 overflow-hidden flex items-center justify-center">
-            <img src={`${blogPosts.img}`} alt="images" className="w-full" />
+            <img src={`${blogPosts.image}`} alt="images" className="w-full" />
           </div>
           <div className="border-2 border-black w-full h-2/3 px-2">
             {blogPosts.content}

@@ -3,12 +3,14 @@ const router = express.Router();
 import Post from "../models/blog.js";
 
 router.post("/blogpost", async (req, res) => {
+  console.log(req.body);
   const newPost = await Post.create({
     userName: req.body.userName,
     title: req.body.title,
     description: req.body.description,
     content: req.body.content,
-    img: req.body.img,
+    image: req.body.image,
+    tags: req.body.tags,
   });
   res.status(200).json({ result: "Post Successfull" });
 });

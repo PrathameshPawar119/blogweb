@@ -47,7 +47,7 @@ const FeatPost = () => {
                 <div className="sm:min-w-[32%] min-w-full gap-2 flex-1 h-[55vh] overflow-hidden flex items-start justify-center flex-col">
                   <div className="h-2/3 w-full p-3 border-2 border-black">
                     <img
-                      src={post.imageUrl}
+                      src={post.image}
                       alt="image"
                       className="w-full rounded-xl h-full object-cover hover:scale-105 transition-all"
                     />

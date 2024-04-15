@@ -43,13 +43,13 @@ const FeatPost = () => {
             );
 
             return (
-              <Link to={`/blogpost/${post.title}`} key={index}>
-                <div className="sm:min-w-[32%] min-w-full gap-2 flex-1 h-[55vh] overflow-hidden flex items-start justify-center flex-col">
-                  <div className="h-2/3 w-full ">
+              <Link to={`/blogpost/${post.title}`} key={index} className="p-2">
+                <div className="sm:min-w-[32%] min-w-full p-3 gap-2 flex-1 h-[55vh] overflow-hidden flex items-start justify-center flex-col">
+                  <div className="h-2/3 w-full hover:scale-105 transition-all">
                     <img
                       src={post.image}
                       alt="image"
-                      className="w-full rounded-xl h-full object-cover hover:scale-105 transition-all"
+                      className="w-full rounded-xl h-full object-cover "
                     />
                   </div>
                   <div className="flex items-start justify-start flex-col p-1 gap-1 h-1/3  w-full">

@@ -62,7 +62,7 @@ const NewBlog = () => {
   return (
     <>
       <Form
-        className="lg:container w-[95%] m-auto text-xl font-semibold md:h-screen selection:text-green-700"
+        className="lg:container w-[95%] m-auto text-xl font-semibold md:h-screen selection:bg-green-500 selection:text-white"
         onSubmit={handleSubmit}
       >
         <h1 className="text-4xl font-bold my-4">New Blog Here....!!🔥✌️</h1>

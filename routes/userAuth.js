@@ -32,8 +32,8 @@ router.post("/signin", async (req, res) => {
       user: { id: newUser._id },
     };
     const authToken = jwt.sign(data, JWT_SECRET);
-    const user = req.body.userName;
-    res.status(200).json({ result: "Successfull", authToken, user });
+    const userId = newUser._id;
+    res.status(200).json({ result: "Successfull", authToken, userId });
   } catch (error) {
     console.error("error.message" + error.message);
     res.status(500).json({ error: "Internal server error" });
@@ -66,13 +66,8 @@ router.post("/login", async (req, res) => {
       user: { id: user._id },
     };
     const authToken = jwt.sign(data, JWT_SECRET);
-    const { userName } =
-      req.body.userName.split("@").length === 2
-        ? await User.findOne({
-            email: req.body.userName,
-          })
-        : req.body.userName;
-    res.status(200).json({ result: "Successfull", authToken, userName });
+    const userId = user._id;
+    res.status(200).json({ result: "Successfull", authToken, userId });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ error: "Internal server error" });

@@ -1,10 +1,4 @@
 import mongoose from "mongoose";
-const tagsSchema = new mongoose.Schema({
-  tag: {
-    type: String,
-    required: true,
-  },
-});
 
 const postSchema = new mongoose.Schema({
   title: {
@@ -27,7 +21,16 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  tags: [tagsSchema],
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  tags: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 });
 
 const Post = mongoose.model("Post", postSchema);

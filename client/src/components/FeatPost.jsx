@@ -1,32 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Blog from "./Blog";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { DataContext } from "../context/DataContext.jsx";
 
 const FeatPost = () => {
-  const [blogPosts, setBlogPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/post/getblogpost", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setBlogPosts(data.allPosts);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-  console.log(blogPosts);
+  const { data, tags } = useContext(DataContext);
+  const blogPosts = data;
   return (
     <>
       <div className="container ">
@@ -53,12 +31,8 @@ const FeatPost = () => {
                     />
                   </div>
                   <div className="flex items-start justify-start flex-col p-1 gap-1 h-1/3  w-full">
-                    <h4 className="font-bold text-xl  w-full">
-                      {post.title}
-                    </h4>
-                    <p className="line-clamp-2  w-full">
-                      {post.description}
-                    </p>
+                    <h4 className="font-bold text-xl  w-full">{post.title}</h4>
+                    <p className="line-clamp-2  w-full">{post.description}</p>
                     <p className="text-slate-600 font-semibold   w-full">
                       {formattedDate}
                     </p>

@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { DataContext } from "../context/DataContext";
+import { useNavigate } from "react-router-dom";
 
 const BlogPost = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const [blogPosts, setBlogPosts] = useState({});
-
+  const { data, tags } = useContext(DataContext);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/post/getblogpost/${params.title}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setBlogPosts(data.post);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+    if (data && data.length > 0) {
+      const filteredPost = data.find((post) => post.title === params.title);
+      setBlogPosts(filteredPost);
+    } else {
+      navigate("/*");
+    }
+  }, [data, params.title]);
   return (
     <>
       <div

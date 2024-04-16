@@ -4,8 +4,8 @@ const Error = () => {
   return (
     <>
       <div className="w-full h-[90vh] flex items-center justify-center ">
-        <div className=" flex items-center justify-center flex-col space-y-3">
-          <h1 className="font-bold text-7xl text-blue-500">Oops...!!</h1>
+        <div className=" flex items-center justify-center flex-col gap-4">
+          <h1 className="font-bold text-7xl text-green-500">Oops...!!</h1>
           <h2 className="text-lg tracking-wider font-semibold">
             404 - Page Not Found
           </h2>

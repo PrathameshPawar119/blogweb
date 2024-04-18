@@ -20,9 +20,9 @@ router.get("/getblogpost", async (req, res) => {
   res.status(200).json({ allPosts });
 });
 
-router.get("/getblogpost/:title", async (req, res) => {
+router.get("/tags/:tag", async (req, res) => {
   try {
-    const post = await Post.findOne({ title: req.params.title });
+    const post = await Post.find({ tags: { $in: req.params.tag } });
 
     if (!post) {
       return res.status(404).json({ message: "Blog post not found" });

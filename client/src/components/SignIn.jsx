@@ -28,7 +28,7 @@ const SignIn = () => {
     });
     const json = await response.json();
     if (json.result === "Successfull") {
-      localStorage.setItem("userId", json.userId);
+      localStorage.setItem("userName", json.userName);
       localStorage.setItem("token", json.authToken);
       navigate("/");
     } else {

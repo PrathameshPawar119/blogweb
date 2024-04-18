@@ -11,14 +11,8 @@ const Carousels = () => {
     {
       title: "Web Dev",
       desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis fugiat quidem, dolor, sed optio nostrum saepe ipsum debitis tempore natus",
-      url: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
-    },
-    {
-      title: "Web Dev",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis fugiat quidem, dolor, sed optio nostrum saepe ipsum debitis tempore natus",
       url: "https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80",
     },
-
     {
       title: "Web Dev",
       desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis fugiat quidem, dolor, sed optio nostrum saepe ipsum debitis tempore natus",

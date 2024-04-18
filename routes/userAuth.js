@@ -32,8 +32,8 @@ router.post("/signin", async (req, res) => {
       user: { id: newUser._id },
     };
     const authToken = jwt.sign(data, JWT_SECRET);
-    const userId = newUser._id;
-    res.status(200).json({ result: "Successfull", authToken, userId });
+    const userName = newUser.userName;
+    res.status(200).json({ result: "Successfull", authToken, userName });
   } catch (error) {
     console.error("error.message" + error.message);
     res.status(500).json({ error: "Internal server error" });
@@ -66,8 +66,8 @@ router.post("/login", async (req, res) => {
       user: { id: user._id },
     };
     const authToken = jwt.sign(data, JWT_SECRET);
-    const userId = user._id;
-    res.status(200).json({ result: "Successfull", authToken, userId });
+    const userName = user.userName;
+    res.status(200).json({ result: "Successfull", authToken, userName });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ error: "Internal server error" });

@@ -23,7 +23,6 @@ const NewBlog = () => {
       [e.target.name]: e.target.value,
       tags: value1,
     });
-    console.log(blog);
   };
 
   const handleSubmit = async (e) => {
@@ -37,7 +36,6 @@ const NewBlog = () => {
         },
         body: JSON.stringify(blog),
       });
-      console.log(JSON.stringify(blog));
       if (!response.ok) {
         throw new Error("Failed to submit blog");
       }

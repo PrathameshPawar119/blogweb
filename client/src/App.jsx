@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import Error from "./components/Error.jsx";
 import NewBlog from "./components/NewBlog.jsx";
+import TaggedBlog from "./components/TaggedBlog.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/newPost" element={<NewBlog />} />
           <Route path="/blogPost/:title" element={<BlogPost />} />
+          <Route path="/tags/:tag" element={<TaggedBlog />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

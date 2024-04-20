@@ -4,8 +4,7 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [data, setData] = useState([]);
-  const [allTags, setAllTags] = useState([]);
-
+  const [taggedBlog, setTaggedBlog] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,8 +21,16 @@ export const DataProvider = ({ children }) => {
         const postData = await response.json();
         setData(postData.allPosts);
         const tagsArray = postData.allPosts.flatMap((post) => post.tags);
-        const uniqueTags = Array.from(new Set(tagsArray));
-        setAllTags(uniqueTags);
+        const tagCounts = tagsArray.reduce((acc, tag) => {
+          acc[tag] = (acc[tag] || 0) + 1;
+          return acc;
+        }, {});
+
+        // Convert tagCounts object to an array of objects
+        const tagCountsArray = Object.entries(tagCounts).map(
+          ([tag, count]) => ({ tag, count })
+        );
+        setTaggedBlog(tagCountsArray);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -32,7 +39,7 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   return (
-    <DataContext.Provider value={{ data, allTags }}>
+    <DataContext.Provider value={{ data, taggedBlog }}>
       {children}
     </DataContext.Provider>
   );

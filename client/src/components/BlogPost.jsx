@@ -7,7 +7,7 @@ const BlogPost = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [blogPosts, setBlogPosts] = useState({});
-  const { data, tags } = useContext(DataContext);
+  const { data, taggedBlog } = useContext(DataContext);
   useEffect(() => {
     if (data && data.length > 0) {
       const filteredPost = data.find((post) => post.title === params.title);

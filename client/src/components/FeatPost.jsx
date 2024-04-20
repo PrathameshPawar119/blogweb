@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { DataContext } from "../context/DataContext.jsx";
 
 const FeatPost = () => {
-  const { data, tags } = useContext(DataContext);
+  const { data,  taggedBlog } = useContext(DataContext);
   const blogPosts = data;
-  console.log(localStorage);
   return (
     <>
       <div className="container border-2 border-black p-0">
@@ -49,7 +48,7 @@ const FeatPost = () => {
                         <Link
                           to={`/tags/${tag}`}
                           key={index}
-                          className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                          className="relative z-10 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-200"
                         >
                           {tag}
                         </Link>

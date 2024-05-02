@@ -2,6 +2,7 @@ import React from "react";
 import Carousels from "./Carousels.jsx";
 import FeatPost from "./FeatPost.jsx";
 import Tags from "./Tags.jsx";
+import Footer from "./Footer.jsx";
 
 const Hero = () => {
   return (
@@ -9,6 +10,7 @@ const Hero = () => {
       <Carousels />
       <FeatPost />
       <Tags />
+      <Footer />
     </div>
   );
 };

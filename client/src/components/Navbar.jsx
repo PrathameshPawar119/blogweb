@@ -3,16 +3,13 @@ import Image from "../assets/Carousalimages/logo.png";
 import FB from "../assets/icons/facebook.png";
 import IG from "../assets/icons/instagram.png";
 import TW from "../assets/icons/twitter.png";
+import User from "../assets/icons/user.png";
 import open from "../assets/icons/menu.png";
 import close from "../assets/icons/close.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const logOut = () => {
-    localStorage.clear();
-    return "/";
-  };
+  const [subMenu, setSubMenu] = useState(false);
   const navBtnGrp = [
     {
       title: "Home",
@@ -67,15 +64,7 @@ const Navbar = () => {
               <Link to={btn.nav}>{btn.title}</Link>
             </button>
           ))}
-          {localStorage.getItem("token") ? (
-            <button
-              onClick={() => {
-                localStorage.clear();
-              }}
-            >
-              <Link to={"/"}>Logout</Link>
-            </button>
-          ) : (
+          {!localStorage.getItem("token") && (
             <button>
               <Link to={"/login"}>Login</Link>
             </button>
@@ -103,10 +92,41 @@ const Navbar = () => {
               key={index}
             />
           ))}
+          {localStorage.getItem("token") && (
+            <div className="relative">
+              <img
+                src={User}
+                className="cursor-pointer "
+                onClick={() => setSubMenu(!subMenu)}
+              />
+              {subMenu && (
+                <div className="absolute top-10 -left-8  w-24 border-2 border-black z-50">
+                  <ul>
+                    <Link to={"/"}>
+                      <li className="hover:bg-gray-100 p-2 ">
+                        <button
+                          onClick={() => {
+                            localStorage.clear();
+                          }}
+                        >
+                          Logout
+                        </button>
+                      </li>
+                    </Link>{" "}
+                    <Link to={"/newPost"}>
+                      <li className="hover:bg-gray-100 p-2">
+                        <button>New Blog</button>
+                      </li>
+                    </Link>
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
       {menu && dimensions.width <= 639 && (
-        <div className=" z-50 bg-white absolute w-full -bottom-52 py-4 font-semibold text-lg right-0 border-2 border-black flex items-center justify-center flex-col gap-6">
+        <div className=" z-50 bg-white absolute w-full -bottom-52 py-4 px-2 font-semibold text-lg right-0 border-2 border-black flex items-start justify-center flex-col gap-6">
           {navBtnGrp.map((btn, index) => (
             <button>
               <Link to={btn.nav}>{btn.title}</Link>
@@ -120,6 +140,38 @@ const Navbar = () => {
                 key={index}
               />
             ))}
+
+            {localStorage.getItem("token") && (
+              <div className="relative">
+                <img
+                  src={User}
+                  className="cursor-pointer "
+                  onClick={() => setSubMenu(!subMenu)}
+                />
+                {subMenu && (
+                  <div className="absolute -bottom-8 left-14  w-28 border-2 border-black z-50">
+                    <ul>
+                      <Link to={"/"}>
+                        <li className="hover:bg-gray-100 p-2 ">
+                          <button
+                            onClick={() => {
+                              localStorage.clear();
+                            }}
+                          >
+                            Logout
+                          </button>
+                        </li>
+                      </Link>{" "}
+                      <Link to={"/newPost"}>
+                        <li className="hover:bg-gray-100 p-2">
+                          <button>New Blog</button>
+                        </li>
+                      </Link>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}

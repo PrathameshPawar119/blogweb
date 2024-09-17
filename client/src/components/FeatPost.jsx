@@ -7,7 +7,7 @@ const FeatPost = () => {
   const blogPosts = data;
   return (
     <>
-      <div className="container border-2 border-black p-0">
+      <div className="container border-2 border-black px-0 py-16">
         <div className="w-full  border-2 border-green-600 text-center space-y-2">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl ">
             Featured blogs

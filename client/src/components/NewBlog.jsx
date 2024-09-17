@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { Select } from "./Select";
+import ReactQuill from "react-quill";
+import "quill/dist/quill.snow.css";
 
 const NewBlog = () => {
   const navigate = useNavigate();
   const [value1, setValue1] = useState([]);
-  useEffect(() => {
-    if (!localStorage.getItem("token")) navigate("/");
-  }, []);
   const [blog, setBlog] = useState({
     title: "",
     description: "",
@@ -17,34 +16,45 @@ const NewBlog = () => {
     author: localStorage.getItem("userName"),
     tags: [],
   });
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) navigate("/");
+  }, [navigate]);
+
   const handleChange = (e) => {
     setBlog({
       ...blog,
       [e.target.name]: e.target.value,
-      tags: value1,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (value1.length === 0) value1.push("General");
+
+    const updatedBlog = {
+      ...blog,
+      tags: value1,
+    };
+
     try {
       const response = await fetch("http://localhost:5000/post/blogpost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(blog),
+        body: JSON.stringify(updatedBlog),
       });
       if (!response.ok) {
         throw new Error("Failed to submit blog");
       }
+      // Clear the blog state and value1
       setBlog({
-        ...blog,
         title: "",
         description: "",
         content: "",
         image: "",
+        author: localStorage.getItem("userName"),
         tags: [],
       });
       setValue1([]);
@@ -53,6 +63,74 @@ const NewBlog = () => {
       console.error("Error submitting blog:", error);
     }
   };
+
+  const modules = {
+    toolbar: [
+      [{ size: ["small", false, "large", "huge"] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ align: [] }],
+      [
+        {
+          color: [
+            "#000000",
+            "#e60000",
+            "#ff9900",
+            "#ffff00",
+            "#008a00",
+            "#0066cc",
+            "#9933ff",
+            "#ffffff",
+            "#facccc",
+            "#ffebcc",
+            "#ffffcc",
+            "#cce8cc",
+            "#cce0f5",
+            "#ebd6ff",
+            "#bbbbbb",
+            "#f06666",
+            "#ffc266",
+            "#ffff66",
+            "#66b966",
+            "#66a3e0",
+            "#c285ff",
+            "#888888",
+            "#a10000",
+            "#b26b00",
+            "#b2b200",
+            "#006100",
+            "#0047b2",
+            "#6b24b2",
+            "#444444",
+            "#5c0000",
+            "#663d00",
+            "#666600",
+            "#003700",
+            "#002966",
+            "#3d1466",
+            "custom-color",
+          ],
+        },
+      ],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "height",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "color",
+    "bullet",
+    "indent",
+    "align",
+    "size",
+  ];
 
   const options = ["First", "Second", "Third", "Fourth", "Fifth"];
 
@@ -92,35 +170,20 @@ const NewBlog = () => {
                 name="description"
               />
             </Form.Group>
-            <div className="col-span-full mb-3 w-full">
-              <label
-                htmlFor="cover-photo"
-                className="block text-base font-medium leading-6 text-gray-900"
-              >
-                Thumbnail
-              </label>
-              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                <div className="text-center">
-                  <div className="mt-4 flex flex-col text-sm leading-6 text-gray-600">
-                    <label
-                      htmlFor="file-upload"
-                      className="relative cursor-pointer rounded-md bg-white font-semibold text-green-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-green-600 focus-within:ring-offset-2 hover:text-green-500"
-                    >
-                      <span>Upload a file </span>
-                      <input
-                        id="file-upload"
-                        name="file-upload"
-                        type="file"
-                        className="sr-only"
-                      />
-                    </label>
-                    <p className="text-xs leading-5 text-gray-600">
-                      PNG, JPG, GIF up to 10MB
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Form.Group
+              className="mb-3 w-full"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Thumbnail Image URL</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={1}
+                style={{ resize: "none" }}
+                value={blog.image}
+                onChange={handleChange}
+                name="image"
+              />
+            </Form.Group>
             <Form.Group
               className="mb-3 w-full"
               controlId="exampleForm.ControlTextarea1"
@@ -140,18 +203,20 @@ const NewBlog = () => {
             </button>
           </div>
           <div className="p-2 md:w-2/3 w-full flex flex-col">
-            <Form.Group className="mb-3 flex-grow">
-              <Form.Label>Blog Content</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={15}
-                className="h-[95%]"
-                style={{ resize: "none" }}
-                onChange={handleChange}
-                value={blog.content}
-                name="content"
-              />
-            </Form.Group>
+            <ReactQuill
+              theme="snow"
+              modules={modules}
+              formats={formats}
+              placeholder="write your content ...."
+              className="h-5/6"
+              value={blog.content}
+              onChange={(content) =>
+                setBlog((prevBlog) => ({
+                  ...prevBlog,
+                  content,
+                }))
+              }
+            />
           </div>
         </div>
       </Form>

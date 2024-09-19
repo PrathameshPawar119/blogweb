@@ -71,6 +71,7 @@ const NewBlog = () => {
       [{ list: "ordered" }, { list: "bullet" }],
       [{ indent: "-1" }, { indent: "+1" }],
       [{ align: [] }],
+      [{ header: [1, 2, 3, 4, 5, 6] }],
       [
         {
           color: [
@@ -132,17 +133,47 @@ const NewBlog = () => {
     "size",
   ];
 
-  const options = ["First", "Second", "Third", "Fourth", "Fifth"];
+  const options = [
+    "WebDev",
+    "DevOps",
+    "AWS",
+    "Cloud",
+    "MERN",
+    "DSA",
+    "ReactJs",
+    "MongoDB",
+    "Database",
+    "SQL",
+    "Php",
+    "Azure",
+    "System Design",
+    "Technology",
+    "Software Development",
+    "Computer Networks",
+    "TOC",
+    "Data Logic",
+    "Operating System",
+    "Cybersecurity",
+    "Machine Learning",
+    "A.I.",
+    "Generative A.I.",
+    "OpenAI",
+    "VsCode",
+    "Extension",
+    "Programming",
+    "Algorithm",
+    "Data Structure",
+  ];
 
   return (
     <>
       <Form
-        className="lg:container w-[95%] m-auto font-semibold md:h-screen selection:bg-green-500 selection:text-white"
+        className="lg:container w-[95%] m-auto font-semibold md:h-screen "
         onSubmit={handleSubmit}
       >
         <h1 className="text-4xl font-bold my-4">New Blog Here....!!🔥✌️</h1>
 
-        <div className="flex items-stretch justify-center md:flex-row flex-col w-full border-2 border-black h-[90%] gap-4">
+        <div className="flex items-stretch justify-center md:flex-row flex-col w-full h-[90%] gap-4">
           <div className="flex items-start justify-start p-2 flex-col md:w-1/3 w-full">
             <Form.Group
               className="mb-3 w-full"
@@ -202,7 +233,7 @@ const NewBlog = () => {
               Post
             </button>
           </div>
-          <div className="p-2 md:w-2/3 w-full flex flex-col">
+          <div className="p-2 md:w-2/3 w-full flex flex-col border-2 border-black">
             <ReactQuill
               theme="snow"
               modules={modules}

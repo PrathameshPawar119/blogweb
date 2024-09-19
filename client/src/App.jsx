@@ -8,22 +8,26 @@ import Hero from "./components/Hero.jsx";
 import Error from "./components/Error.jsx";
 import NewBlog from "./components/NewBlog.jsx";
 import TaggedBlog from "./components/TaggedBlog.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/newPost" element={<NewBlog />} />
-          <Route path="/blogPost/:title" element={<BlogPost />} />
-          <Route path="/tags/:tag" element={<TaggedBlog />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </Router>
+      <div className="bg-[#f5f5f5] selection:bg-green-500 selection:text-white">
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/newPost" element={<NewBlog />} />
+            <Route path="/blogPost/:title" element={<BlogPost />} />
+            <Route path="/tags/:tag" element={<TaggedBlog />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </Router>
+        <Footer />
+      </div>
     </>
   );
 }

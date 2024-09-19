@@ -37,7 +37,7 @@ const navigation = [
   },
   {
     name: "GitHub",
-    href: "https://github.com/Albert-2",
+    href: "#",
     icon: (props) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path
@@ -65,7 +65,7 @@ const navigation = [
 const Footer = () => {
   return (
     <footer className="bg-white ">
-      <div className=" container py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+      <div className="container p-4 sm:p-6 md:flex md:items-center md:justify-between">
         <div className="flex justify-center sm:space-x-6 space-x-3 md:order-2 ">
           {navigation.map((item) => (
             <a

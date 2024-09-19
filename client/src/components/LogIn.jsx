@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem("token")) navigate("/");
   }, []);
@@ -10,12 +11,22 @@ const LogIn = () => {
     userName: "",
     password: "",
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/");
+      
+    }
+  }, [navigate]);
+
   const handleChage = (e) => {
     setCredentials({
       ...credential,
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/auth/login", {
@@ -34,6 +45,14 @@ const LogIn = () => {
       console.log("warning...!!");
     }
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("token");
+    navigate("/login");
+    window.location.reload();
+  };
+
   return (
     <div className="bg-white border-2 border-gray-200 sm:max-w-sm max-w-[90%] mx-auto rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700 absolute inset-0 m-auto max-h-fit">
       <div className="p-4 sm:p-7">

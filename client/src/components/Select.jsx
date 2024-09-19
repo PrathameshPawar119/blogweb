@@ -7,20 +7,23 @@ export const Select = ({ value, onChange, options }) => {
   function clearOptions() {
     onChange([]);
   }
+
   function selectOption(option) {
     const isUnique = !value.find((v) => v === option);
     if (isUnique) {
       onChange([...value, option]);
     }
   }
+
   function removeTag(tag) {
     const newValue = value.filter((v) => v !== tag);
     onChange(newValue);
   }
+
   useEffect(() => {
     const handler = (e) => {
-      if (e.target != containerRef.current) return;
-      if (e.code == "Escape") setIsOpen(false);
+      if (e.target !== containerRef.current) return;
+      if (e.code === "Escape") setIsOpen(false);
     };
 
     containerRef.current?.addEventListener("keydown", handler);
@@ -36,7 +39,7 @@ export const Select = ({ value, onChange, options }) => {
       onBlur={() => setIsOpen(false)}
       onClick={() => setIsOpen((prev) => !prev)}
       tabIndex={0}
-      className="relative w-full font-normal text-lg min-h-6 border border-gray-300 flex items-center gap-2 px-2 py-1 rounded focus:border-blue-500"
+      className="bg-white relative w-full font-normal text-lg min-h-6 border border-gray-300 flex items-center gap-2 px-2 py-1 rounded focus:border-blue-500"
     >
       <span className="flex-grow flex gap-2 flex-wrap">
         {value.map((v, index) =>
@@ -72,6 +75,7 @@ export const Select = ({ value, onChange, options }) => {
         className={`absolute top-full left-0 w-full bg-white border border-gray-300 rounded z-10 ${
           isOpen ? "" : "hidden"
         }`}
+        style={{ maxHeight: "200px", overflowY: "auto" }}
       >
         {options.map((option, index) => (
           <li

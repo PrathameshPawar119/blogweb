@@ -1,42 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import Carousel from "react-bootstrap/Carousel";
+import { DataContext } from "../context/DataContext.jsx";
+import { Link } from "react-router-dom";
 
 const Carousels = () => {
-  const slides = [
-    {
-      title: "Web Dev",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis fugiat quidem, dolor, sed optio nostrum saepe ipsum debitis tempore natus",
-      url: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80",
-    },
-    {
-      title: "Web Dev",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis fugiat quidem, dolor, sed optio nostrum saepe ipsum debitis tempore natus",
-      url: "https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80",
-    },
-    {
-      title: "Web Dev",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis fugiat quidem, dolor, sed optio nostrum saepe ipsum debitis tempore natus",
-      url: "https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2253&q=80",
-    },
-    {
-      title: "Web Dev",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis fugiat quidem, dolor, sed optio nostrum saepe ipsum debitis tempore natus",
-      url: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80",
-    },
-  ];
+  const { data } = useContext(DataContext);
+  const getRandomBlogs = (num) => {
+    if (!data || data.length === 0) return [];
+    const shuffled = [...data].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+  };
+  const slides = getRandomBlogs(4);
+
   return (
-    <div className="h-full container m-auto sm:py-16 py-6 sm:px-4 px-2 relative group rounded-3xl flex items-center justify-center ">
-      <Carousel className="flex items-center justify-center h-[80vh] overflow-hidden w-full rounded-3xl">
-        {slides.map((img, index) => (
+    <div className="h-96 overflow-hidden container mx-auto my-4 relative group flex items-center justify-center">
+      <Carousel className="flex items-center justify-center overflow-hidden w-full rounded-3xl">
+        {slides.map((blog, index) => (
           <Carousel.Item
             className="w-full h-[80vh] rounded-3xl bg-center bg-cover duration-500"
-            style={{ backgroundImage: `url(${img.url})` }}
+            style={{ backgroundImage: `url(${blog.image})` }}
             key={index}
           >
-            <Carousel.Caption className="space-y-3">
-              <h3 className="font-bold text-5xl">{img.title}</h3>
-              <p className="text-lg">{img.desc}</p>
-            </Carousel.Caption>
+            <Link to={`/blogpost/${blog.title}`}>
+              <Carousel.Caption className="space-y-3 absolute top-1/3 z-40">
+                <h3 className="font-bold text-5xl">{blog.title}</h3>
+                <p className="text-lg sm:line-clamp-3 line-clamp-2">
+                  {blog.description}
+                </p>
+              </Carousel.Caption>
+            </Link>
           </Carousel.Item>
         ))}
       </Carousel>

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "../assets/Carousalimages/logo.png";
-import FB from "../assets/icons/facebook.png";
-import IG from "../assets/icons/instagram.png";
-import TW from "../assets/icons/twitter.png";
-import User from "../assets/icons/user.png";
-import open from "../assets/icons/menu.png";
-import close from "../assets/icons/close.png";
-import { Link, useNavigate } from "react-router-dom";
+import { FB, IG, TW, User, open, close } from "../assets/icons";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [subMenu, setSubMenu] = useState(false);
@@ -50,8 +45,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="top-0 z-50 bg-white flex items-center justify-between border-2 border-black py-2 px-4 relative">
-      <div className="md:w-1/3 w-1/2 border-2 border-black flex items-center justify-start">
+    <div className="z-50 bg-white shadow-md flex items-center justify-between border-b-2 border-gray-200 py-2 px-4 sticky top-0">
+      <div className="md:w-1/3 w-1/2  flex items-center justify-start">
         <Link to="/">
           <img src={Image} className="h-10 " />
         </Link>
@@ -71,10 +66,7 @@ const Navbar = () => {
           )}
         </div>
         {dimensions.width <= 768 && (
-          <button
-            className="sm:hidden block border-2 border-black"
-            onClick={() => setMenu(!menu)}
-          >
+          <button className="sm:hidden block " onClick={() => setMenu(!menu)}>
             {menu ? (
               <img src={close} alt="openIcon" />
             ) : (
@@ -83,8 +75,8 @@ const Navbar = () => {
           </button>
         )}
       </div>
-      <div className="md:w-1/3 border-2 border-black md:flex hidden items-center justify-end ">
-        <div className="border-2 border-black flex items-center justify-between gap-3 px-4 py-2 w-fit">
+      <div className="md:w-1/3  md:flex hidden items-center justify-end ">
+        <div className=" flex items-center justify-between gap-3 px-4 py-2 w-fit">
           {socialBtn.map((icon, index) => (
             <img
               src={icon.icon}
@@ -100,7 +92,7 @@ const Navbar = () => {
                 onClick={() => setSubMenu(!subMenu)}
               />
               {subMenu && (
-                <div className="absolute top-10 -left-8  w-24 border-2 border-black z-50">
+                <div className="absolute top-10 -left-8 w-24 bg-white shadow-lg border border-gray-200 z-50 rounded-lg">
                   <ul>
                     <Link to={"/"}>
                       <li className="hover:bg-gray-100 p-2 ">
@@ -126,17 +118,17 @@ const Navbar = () => {
         </div>
       </div>
       {menu && dimensions.width <= 639 && (
-        <div className=" z-50 bg-white absolute w-full -bottom-52 py-4 px-2 font-semibold text-lg right-0 border-2 border-black flex items-start justify-center flex-col gap-6">
+        <div className="z-50 bg-white absolute w-full -bottom-40 py-4 px-2 font-semibold text-lg right-0  flex items-start justify-center flex-col gap-3">
           {navBtnGrp.map((btn, index) => (
             <button>
               <Link to={btn.nav}>{btn.title}</Link>
             </button>
           ))}
-          <div className="border-2 border-black flex items-center justify-between gap-3 px-4 py-2 w-fit">
+          <div className="flex items-center justify-between gap-3 w-fit ">
             {socialBtn.map((icon, index) => (
               <img
                 src={icon.icon}
-                className="hover:scale-125 transition-all cursor-pointer"
+                className="hover:scale-125 transition-all cursor-pointer "
                 key={index}
               />
             ))}
@@ -149,7 +141,7 @@ const Navbar = () => {
                   onClick={() => setSubMenu(!subMenu)}
                 />
                 {subMenu && (
-                  <div className="absolute -bottom-8 left-14  w-28 border-2 border-black z-50">
+                  <div className="absolute -bottom-8 left-14  w-28  z-50 bg-white shadow-lg border border-gray-200 z-50 rounded-lg">
                     <ul>
                       <Link to={"/"}>
                         <li className="hover:bg-gray-100 p-2 ">

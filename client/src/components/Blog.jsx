@@ -1,53 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const Blog = (props) => {
   const formattedDate = new Date(props.blog.date).toLocaleDateString("en-US", {
     day: "2-digit",
     month: "short",
     year: "numeric",
   });
+
   return (
     <Link
       to={`/blogpost/${props.blog.title}`}
-      className="w-full border-2 border-red-500 flex items-center justify-center gap-1"
+      className="w-full bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105"
     >
-      <div className="w-4/5 border-2 border-black space-y-2 px-2">
-        <h4 className="font-bold sm:text-2xl text-lg">{props.blog.title}</h4>
-        <p className="sm:line-clamp-2 hidden text-base break-words  text-slate-400 font-semibold">
-          {props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description +
-            props.blog.description}
-        </p>
-        <p className="text-sm text-slate-500 font-semibold">
-          <span className="mr-3">
-            {Math.floor(Math.random() * 10 + 5)} min read
-          </span>
-          {formattedDate}
-        </p>
-      </div>
-      <div className="border-2 border-black">
-        <img src={props.blog.image} alt="image" className="h-32" />
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/3">
+          <img
+            src={props.blog.image}
+            alt={props.blog.title}
+            className="w-full h-48 object-cover"
+          />
+        </div>
+        <div className="md:w-2/3 p-4 flex flex-col justify-between">
+          <h4 className="font-bold sm:text-2xl text-xl">{props.blog.title}</h4>
+          <p className="text-gray-600 line-clamp-3 mb-4">
+            {props.blog.description}
+          </p>
+          <p className="text-sm text-gray-500">
+            <span className="mr-3">
+              {Math.floor(Math.random() * 10 + 5)} min read
+            </span>
+            {formattedDate}
+          </p>
+        </div>
       </div>
     </Link>
   );

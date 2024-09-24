@@ -5,7 +5,7 @@ import { DataContext } from "../context/DataContext.jsx";
 const Tags = () => {
   const { data, taggedBlog } = useContext(DataContext);
   return (
-    <div className="py-4 border-2 border-[#f5f5f5] container flex items-start justify-start flex-col gap-4">
+    <div className="py-4 my-2 border-2 border-[#f5f5f5] container flex items-start justify-start flex-col gap-4">
       <div className="w-full text-center space-y-2">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl ">
           Categories

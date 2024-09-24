@@ -5,7 +5,7 @@ import Tags from "./Tags.jsx";
 
 const Hero = () => {
   return (
-    <div className="border-1">
+    <div className="border-1 bg-[#f5f5f5]">
       <Carousels />
       <FeatPost />
       <Tags />

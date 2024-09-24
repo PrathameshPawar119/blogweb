@@ -14,8 +14,9 @@ function App() {
   return (
     <>
       <div className="bg-[#f5f5f5] selection:bg-green-500 selection:text-white">
-        <Router>
-          <Navbar />
+      <Router>
+        <Navbar />
+        <main>
           <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="/signin" element={<SignIn />} />
@@ -25,9 +26,10 @@ function App() {
             <Route path="/tags/:tag" element={<TaggedBlog />} />
             <Route path="*" element={<Error />} />
           </Routes>
-        </Router>
+        </main>
         <Footer />
-      </div>
+      </Router>
+    </div>
     </>
   );
 }

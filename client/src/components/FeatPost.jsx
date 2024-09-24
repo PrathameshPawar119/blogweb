@@ -7,7 +7,7 @@ const FeatPost = () => {
   const blogPosts = data;
 
   return (
-    <div className="container px-4 py-16 mx-auto">
+    <div className="container px-4 mx-auto">
       <div className="text-center space-y-4 mb-10">
         <h2 className="text-4xl font-bold text-gray-900">Featured Blogs</h2>
         <p className="text-gray-600">
@@ -15,7 +15,7 @@ const FeatPost = () => {
         </p>
       </div>
       <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
-        {blogPosts.slice(0, 3).map((post, index) => {
+        {blogPosts.slice(-3).map((post, index) => {
           const formattedDate = new Date(post.date).toLocaleDateString(
             "en-US",
             {

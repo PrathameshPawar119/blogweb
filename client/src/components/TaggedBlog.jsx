@@ -18,7 +18,7 @@ const TaggedBlog = () => {
   }, [blogs, navigate]);
 
   return (
-    <div className="container mx-auto p-6 rounded-lg m-2">
+    <div className="container mx-auto p-6 rounded-lg m-2 min-h-[83vh]">
       {blogs.length > 0 ? (
         <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-6">
           {blogs.map((blog, index) => (

@@ -1,18 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "../context/DataContext.jsx";
 
-const FeatPost = () => {
-  const { data } = useContext(DataContext);
-  const blogPosts = data;
-  const [isLiked, setIsLiked] = useState(false);
-  const [isMarked, setIsMarked] = useState(false);
-  const handleToggleMark = () => {
-    setIsMarked((prev) => !prev);
-  };
-  const handleToggleLike = () => {
-    setIsLiked((prev) => !prev);
-  };
+const HomePosts = () => {
   // const blogPosts = [
   //   {
   //     _id: {
@@ -392,71 +382,212 @@ const FeatPost = () => {
   //     __v: 0,
   //   },
   // ];
-
+  const { data } = useContext(DataContext);
+  const blogPosts = data;
   return (
-    <div className="container px-4 mx-auto my-20 border-2 border-black">
-      <div className="text-center space-y-4 mb-10">
-        <h2 className="text-5xl font-bold text-gray-900">Featured Blogs</h2>
-        <p className="text-gray-600">
-          Discover our top picks for insightful and engaging reads.
-        </p>
-      </div>
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
-        {blogPosts.slice(-3).map((post, index) => {
-          const formattedDate = new Date(post.date.$date).toLocaleDateString(
-            "en-US",
-            {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            }
-          );
+    <>
+      <div className="flex flex-col space-y-24 mt-20 w-[95%] mx-auto">
+        <div className="flex items-center justify-center sm:flex-row flex-col sm:mx-10 mx-2 sm:space-x-10">
+          <div className="border-2 border-black sm:w-1/3 w-full self-stretch bg-[#f4f6ad]">
+            <p className="sticky top-20 border-2 border-black p-4 text-xl">
+              Read it all
+              <h1 className="lg:text-6xl sm:text-4xl text-2xl font-bold">
+                Health & Wellness
+              </h1>
+            </p>
+          </div>
+          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-2 border-black">
+            {blogPosts
+              .filter((post) => post.tags.includes("First"))
+              .slice(-4)
+              .map((post, index) => {
+                console.log(post);
+                const formattedDate = new Date(post.date).toLocaleDateString(
+                  "en-US",
+                  {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  }
+                );
 
-          return (
-            <div>
-              <Link
-                to={`/blogpost/${post.title}`}
-                key={index}
-                className="block transition-transform transform hover:scale-105 border-2 border-black"
-              >
-                <div className="bg-white shadow-lg overflow-hidden h-full">
-                  <div className="h-48">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="sm:p-4 p-1 border-2 border-black flex flex-col items-start justify-between space-y-4">
-                    <h4 className="font-semibold text-xl w-full">
-                      {post.title}
-                    </h4>
-                    <p className="text-gray-700 line-clamp-2 w-full">
-                      {post.description}
-                    </p>
-                    <p className="text-sm text-gray-500 w-full">
-                      {formattedDate}
-                    </p>
-                    <div className="flex flex-wrap w-full">
-                      {post.tags.slice(0, 3).map((tag, index) => (
-                        <Link
-                          to={`/tags/${tag}`}
-                          key={index}
-                          className="bg-gray-100 px-3 py-1 sm:m-2 m-1 rounded-full text-gray-600 hover:bg-gray-200 transition"
-                        >
-                          #{tag}
-                        </Link>
-                      ))}
+                return (
+                  <Link
+                    to={`/blogpost/${post.title}`}
+                    key={index}
+                    className="block"
+                  >
+                    <div className="bg-white shadow-lg overflow-hidden h-full">
+                      <div className="h-96">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-semibold text-xl mb-2">
+                          {post.title}
+                        </h4>
+                        <p className="text-gray-700 mb-2 line-clamp-2">
+                          {post.description}
+                        </p>
+                        <p className="text-sm text-gray-500 mb-4">
+                          {formattedDate}
+                        </p>
+                        <div className="flex space-x-2">
+                          {post.tags.slice(0, 3).map((tag, index) => (
+                            <Link
+                              to={`/tags/${tag}`}
+                              key={index}
+                              className="bg-gray-100 px-3 py-1 rounded-full text-gray-600"
+                            >
+                              #{tag}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+                  </Link>
+                );
+              })}
+          </div>
+        </div>
+        <div className="flex items-center justify-center sm:flex-row flex-col sm:mx-10 mx-2 sm:space-x-10">
+          <div className="border-2 border-black sm:w-1/3 w-full self-stretch bg-[#e1937f]">
+            <p className="sticky top-20 border-2 border-black p-4 text-xl">
+              Read it all
+              <h1 className="lg:text-6xl sm:text-4xl text-2xl font-bold">
+                Fashion & Beauty
+              </h1>
+            </p>
+          </div>
+          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-2 border-black">
+            {blogPosts
+              .filter((post) => post.tags.includes("First"))
+              .slice(-4)
+              .map((post, index) => {
+                console.log(post);
+                const formattedDate = new Date(post.date).toLocaleDateString(
+                  "en-US",
+                  {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  }
+                );
+
+                return (
+                  <Link
+                    to={`/blogpost/${post.title}`}
+                    key={index}
+                    className="block"
+                  >
+                    <div className="bg-white shadow-lg overflow-hidden h-full">
+                      <div className="h-96">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-semibold text-xl mb-2">
+                          {post.title}
+                        </h4>
+                        <p className="text-gray-700 mb-2 line-clamp-2">
+                          {post.description}
+                        </p>
+                        <p className="text-sm text-gray-500 mb-4">
+                          {formattedDate}
+                        </p>
+                        <div className="flex space-x-2">
+                          {post.tags.slice(0, 3).map((tag, index) => (
+                            <Link
+                              to={`/tags/${tag}`}
+                              key={index}
+                              className="bg-gray-100 px-3 py-1 rounded-full text-gray-600"
+                            >
+                              #{tag}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+          </div>
+        </div>
+        <div className="flex items-center justify-center sm:flex-row flex-col sm:mx-10 mx-2 sm:space-x-10">
+          <div className="border-2 border-black sm:w-1/3 w-full self-stretch bg-[#dceefd]">
+            <p className="sticky top-20 border-2 border-black p-4 text-xl">
+              Read it all
+              <h1 className="lg:text-6xl sm:text-4xl text-2xl font-bold">
+                Travel
+              </h1>
+            </p>
+          </div>
+          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-2 border-black">
+            {blogPosts
+              .filter((post) => post.tags.includes("First"))
+              .slice(-4)
+              .map((post, index) => {
+                console.log(post);
+                const formattedDate = new Date(post.date).toLocaleDateString(
+                  "en-US",
+                  {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  }
+                );
+
+                return (
+                  <Link
+                    to={`/blogpost/${post.title}`}
+                    key={index}
+                    className="block"
+                  >
+                    <div className="bg-white shadow-lg overflow-hidden h-full">
+                      <div className="h-96">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-semibold text-xl mb-2">
+                          {post.title}
+                        </h4>
+                        <p className="text-gray-700 mb-2 line-clamp-2">
+                          {post.description}
+                        </p>
+                        <p className="text-sm text-gray-500 mb-4">
+                          {formattedDate}
+                        </p>
+                        <div className="flex space-x-2">
+                          {post.tags.slice(0, 3).map((tag, index) => (
+                            <Link
+                              to={`/tags/${tag}`}
+                              key={index}
+                              className="bg-gray-100 px-3 py-1 rounded-full text-gray-600"
+                            >
+                              #{tag}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default FeatPost;
+export default HomePosts;

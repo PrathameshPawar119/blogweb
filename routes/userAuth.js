@@ -40,7 +40,10 @@ router.post(
       };
       const authToken = jwt.sign(data, JWT_SECRET);
       const userName = newUser.userName;
-      res.status(200).json({ result: "Successfull", authToken, userName });
+      const userID = newUser._id;
+      res
+        .status(200)
+        .json({ result: "Successfull", authToken, userName, userID });
     } catch (error) {
       console.error("error.message" + error.message);
       res.status(500).json({ error: "Internal server error" });
@@ -75,13 +78,20 @@ router.post(
       if (!validPassword) {
         return res.status(400).json({ error: "Invalid credentials" });
       }
-
       const data = {
         user: { id: user._id },
       };
       const authToken = jwt.sign(data, JWT_SECRET, { expiresIn: "1h" });
+      const userID = user._id.toString();
+      const userBlogs = user.savedPosts;
       const userName = user.userName;
-      res.status(200).json({ result: "Successfull", authToken, userName });
+      res.status(200).json({
+        result: "Successfull",
+        authToken,
+        userID,
+        userBlogs,
+        userName,
+      });
     } catch (error) {
       console.error(error.message);
       res.status(500).json({ error: "Internal server error" });

@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import signInRoute from "./routes/userAuth.js";
 import postRoute from "./routes/userPost.js";
+import savedBlog from "./routes/userSaveBlog.js";
 
 mongoDb();
 
@@ -19,3 +20,4 @@ app.listen(port, () => {
 });
 app.use("/auth", signInRoute);
 app.use("/post", postRoute);
+app.use("/save", savedBlog);

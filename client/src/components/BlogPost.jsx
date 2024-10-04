@@ -3,6 +3,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { DataContext } from "../context/DataContext";
 import DOMPurify from "dompurify";
 import "quill/dist/quill.snow.css";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSavedPosts } from "../redux/userSlice";
 
 const BlogPost = () => {
   const navigate = useNavigate();
@@ -14,12 +16,45 @@ const BlogPost = () => {
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [isMarked, setIsMarked] = useState(false);
-  const handleToggleMark = () => {
-    setIsMarked((prev) => !prev);
-  };
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  console.log(user, " from blogpost ");
+  console.log(typeof user, " from blogpost ");
   const handleToggleLike = () => {
     setIsLiked((prev) => !prev);
   };
+
+  const handleToggleSave = async () => {
+    const endpoint = isMarked ? "unsavePost" : "savePost";
+    const method = isMarked ? "DELETE" : "POST";
+    try {
+      const response = await fetch(`http://localhost:5000/save/${endpoint}`, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: user.userID,
+          postID: blogPost._id,
+        }),
+      });
+
+      if (response.ok) {
+        const updatedSavedPosts = isMarked
+          ? user.userBlogs.filter((postId) => postId !== blogPost._id)
+          : [...user.userBlogs, blogPost._id];
+
+        dispatch(updateSavedPosts(updatedSavedPosts));
+        setIsMarked((prev) => !prev);
+      } else {
+        const errorText = await response.text();
+        console.error(errorText);
+      }
+    } catch (error) {
+      console.error("Error saving post:", error);
+    }
+  };
+
   useEffect(() => {
     if (data && data.length > 0) {
       const filteredPost = data.find((post) => post.title === title);
@@ -32,6 +67,13 @@ const BlogPost = () => {
       navigate("/");
     }
   }, [data, title, navigate]);
+
+  useEffect(() => {
+    if (blogPost && user && user.userBlogs) {
+      const isBlogMarked = user.userBlogs.includes(blogPost._id);
+      setIsMarked(isBlogMarked);
+    }
+  }, [blogPost, user]);
 
   useEffect(() => {
     if (blogPost && contentRef.current) {
@@ -112,7 +154,7 @@ const BlogPost = () => {
               </svg>
             )}
           </div>
-          <div onClick={handleToggleMark} className="hover:cursor-pointer">
+          <div onClick={handleToggleSave} className="hover:cursor-pointer">
             {isMarked ? (
               <span className="crayons-reaction__icon crayons-reaction__icon--borderless crayons-reaction__icon--active">
                 <svg

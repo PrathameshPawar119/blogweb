@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/userSlice";
 
 const LogIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem("token")) navigate("/");
@@ -37,8 +40,15 @@ const LogIn = () => {
     });
     const json = await response.json();
     if (json.result === "Successfull") {
-      localStorage.setItem("userName", json.userName);
       localStorage.setItem("token", json.authToken);
+      dispatch(
+        setUser({
+          userName: json.userName,
+          userID: json.userID,
+          userBlogs: json.userBlogs,
+          token: json.authToken,
+        })
+      );
       navigate("/");
       window.location.reload();
     } else {

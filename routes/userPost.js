@@ -11,7 +11,7 @@ router.post("/blogpost", async (req, res) => {
     author: req.body.author,
     tags: req.body.tags,
   });
-  res.status(200).json({ result: "Post Successfull" });
+  res.status(200).json({ result: "Post Successfull", postId: newPost._id });
 });
 
 router.get("/getblogpost", async (req, res) => {

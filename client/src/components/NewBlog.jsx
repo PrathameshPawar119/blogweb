@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Select } from "./Select";
 import ReactQuill from "react-quill";
 import "quill/dist/quill.snow.css";
+import { useSelector } from "react-redux";
 
 const NewBlog = () => {
+  const userID = useSelector((state) => state.user.userID) || [];
   const navigate = useNavigate();
   const [value1, setValue1] = useState([]);
   const [blog, setBlog] = useState({
@@ -13,10 +15,9 @@ const NewBlog = () => {
     description: "",
     content: "",
     image: "",
-    author: localStorage.getItem("userName"),
+    author: userID,
     tags: [],
   });
-
   useEffect(() => {
     if (!localStorage.getItem("token")) navigate("/");
   }, [navigate]);
@@ -25,6 +26,7 @@ const NewBlog = () => {
     setBlog({
       ...blog,
       [e.target.name]: e.target.value,
+      author: userID,
     });
   };
 
@@ -34,6 +36,7 @@ const NewBlog = () => {
 
     const updatedBlog = {
       ...blog,
+      author: userID,
       tags: value1,
     };
 
@@ -45,7 +48,9 @@ const NewBlog = () => {
         },
         body: JSON.stringify(updatedBlog),
       });
-      if (!response.ok) {
+      const json = await response.json();
+      localStorage.setItem("blogID", json.postId);
+      if (json.result != "Post Successfull") {
         throw new Error("Failed to submit blog");
       }
       // Clear the blog state and value1
@@ -54,11 +59,13 @@ const NewBlog = () => {
         description: "",
         content: "",
         image: "",
-        author: localStorage.getItem("userName"),
+        author: userID,
         tags: [],
       });
       setValue1([]);
       console.log("Blog submitted successfully");
+      navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error("Error submitting blog:", error);
     }

@@ -49,8 +49,8 @@ const LogIn = () => {
           token: json.authToken,
         })
       );
-      // navigate("/");
-      // window.location.reload();
+      navigate("/");
+      window.location.reload();
     } else {
       console.log("warning...!!");
     }

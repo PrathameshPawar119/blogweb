@@ -7,9 +7,9 @@ import HomePosts from "./HomePosts.jsx";
 const Hero = () => {
   return (
     <div className="border-1 bg-[#f5f5f5]">
-      {/* <Carousels />
+      <Carousels />
       <HomePosts />
-      <FeatPost /> */}
+      <FeatPost />
       <Tags />
     </div>
   );

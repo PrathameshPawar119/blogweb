@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/userSlice";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (localStorage.getItem("token")) navigate("/");
   }, []);
@@ -28,9 +32,16 @@ const SignIn = () => {
     });
     const json = await response.json();
     if (json.result === "Successfull") {
-      localStorage.setItem("userName", json.userName);
       localStorage.setItem("token", json.authToken);
-      navigate("/");
+      dispatch(
+        setUser({
+          userName: json.userName,
+          userID: json.userID,
+          token: json.authToken,
+        })
+      );
+      // navigate("/");
+      // window.location.reload();
     } else {
       console.log("warning...!!");
     }

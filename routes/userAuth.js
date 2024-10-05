@@ -38,9 +38,9 @@ router.post(
       const data = {
         user: { id: newUser._id },
       };
-      const authToken = jwt.sign(data, JWT_SECRET);
+      const authToken = jwt.sign(data, JWT_SECRET, { expiresIn: "1h" });
       const userName = newUser.userName;
-      const userID = newUser._id;
+      const userID = newUser._id.toString();
       res
         .status(200)
         .json({ result: "Successfull", authToken, userName, userID });

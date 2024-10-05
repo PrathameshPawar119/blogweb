@@ -28,7 +28,7 @@ const Blog = (props) => {
           <div className="flex items-start justify-start flex-wrap">
             {props.blog.tags.map((item, itemIndex) => (
               <Link
-                to={`/tags/${item.tag}`}
+                to={`/tags/${item}`}
                 key={itemIndex}
                 className="flex-grow-1 overflow-hidden"
               >

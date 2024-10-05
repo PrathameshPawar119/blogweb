@@ -7,7 +7,7 @@ import "quill/dist/quill.snow.css";
 import { useSelector } from "react-redux";
 
 const NewBlog = () => {
-  const userID = useSelector((state) => state.user.userID) || [];
+  const userID = useSelector((state) => state.user.userID);
   const navigate = useNavigate();
   const [value1, setValue1] = useState([]);
   const [blog, setBlog] = useState({

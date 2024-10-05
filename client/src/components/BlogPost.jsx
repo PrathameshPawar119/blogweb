@@ -18,13 +18,36 @@ const BlogPost = () => {
   const [isMarked, setIsMarked] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  console.log(user, " from blogpost ");
-  console.log(typeof user, " from blogpost ");
-  const handleToggleLike = () => {
-    setIsLiked((prev) => !prev);
+  const handleToggleLike = async () => {
+    const newIsLiked = !isLiked;
+    const endpoint = isLiked ? "dislikePost" : "likePost";
+    const method = isLiked ? "DELETE" : "POST";
+    try {
+      const response = await fetch(`http://localhost:5000/like/${endpoint}`, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: user.userID,
+          postID: blogPost._id,
+        }),
+      });
+
+      if (response.ok) {
+        console.log(`blog ${isLiked ? "disliked" : "liked"} successfully `);
+        setIsLiked(newIsLiked);
+      } else {
+        const errorText = await response.text();
+        console.error(errorText);
+      }
+    } catch (error) {
+      console.error("Error saving post:", error);
+    }
   };
 
   const handleToggleSave = async () => {
+    const newIsMarked = !isMarked;
     const endpoint = isMarked ? "unsavePost" : "savePost";
     const method = isMarked ? "DELETE" : "POST";
     try {
@@ -43,9 +66,9 @@ const BlogPost = () => {
         const updatedSavedPosts = isMarked
           ? user.userBlogs.filter((postId) => postId !== blogPost._id)
           : [...user.userBlogs, blogPost._id];
-
+        console.log(`blog ${isMarked ? "unsaved" : "saved"} successfully `);
         dispatch(updateSavedPosts(updatedSavedPosts));
-        setIsMarked((prev) => !prev);
+        setIsMarked(newIsMarked);
       } else {
         const errorText = await response.text();
         console.error(errorText);
@@ -60,6 +83,7 @@ const BlogPost = () => {
       const filteredPost = data.find((post) => post.title === title);
       if (filteredPost) {
         setBlogPost(filteredPost);
+        setIsLiked(filteredPost.likedBy.includes(user.userID));
       } else {
         navigate("/");
       }

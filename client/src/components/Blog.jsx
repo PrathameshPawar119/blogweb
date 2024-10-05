@@ -7,7 +7,6 @@ const Blog = (props) => {
     month: "short",
     year: "numeric",
   });
-  console.log(props.blog.tags);
   return (
     <Link
       to={`/blogpost/${props.blog.title}`}

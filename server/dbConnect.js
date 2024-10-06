@@ -1,12 +1,7 @@
 import mongoose from "mongoose";
 function mongoDb() {
   mongoose.connect(
-    // "mongodb://localhost:27017/myBlogDB",
-    "mongodb+srv://bhushanharvard50:MongoDB'24@clusterzero.3yk3x.mongodb.net/myBlogDB",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
+    `mongodb+srv://${process.env.MONGO_USER}:${MONGO_PASS}'24@clusterzero.3yk3x.mongodb.net/${process.env.MONGO_DB}`
   );
   console.log("connected to mongo");
 }

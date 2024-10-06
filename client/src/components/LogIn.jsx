@@ -31,7 +31,7 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/auth/login", {
+    const response = await fetch(`${process.env.API_DOMIAN}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

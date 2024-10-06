@@ -23,16 +23,19 @@ const BlogPost = () => {
     const endpoint = isLiked ? "dislikePost" : "likePost";
     const method = isLiked ? "DELETE" : "POST";
     try {
-      const response = await fetch(`http://localhost:5000/like/${endpoint}`, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userID: user.userID,
-          postID: blogPost._id,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.API_DOMIAN}/like/${endpoint}`,
+        {
+          method,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userID: user.userID,
+            postID: blogPost._id,
+          }),
+        }
+      );
 
       if (response.ok) {
         console.log(`blog ${isLiked ? "disliked" : "liked"} successfully `);
@@ -51,16 +54,19 @@ const BlogPost = () => {
     const endpoint = isMarked ? "unsavePost" : "savePost";
     const method = isMarked ? "DELETE" : "POST";
     try {
-      const response = await fetch(`http://localhost:5000/save/${endpoint}`, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userID: user.userID,
-          postID: blogPost._id,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.API_DOMIAN}/save/${endpoint}`,
+        {
+          method,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userID: user.userID,
+            postID: blogPost._id,
+          }),
+        }
+      );
 
       if (response.ok) {
         const updatedSavedPosts = isMarked

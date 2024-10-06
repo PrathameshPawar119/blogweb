@@ -10,14 +10,7 @@ mongoDb();
 
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["https://blogweb-g8n8.vercel.app/"],
-    methods: ["POST", "GET", "DELETE", "PUT"],
-    credentials: true,
-  })
-);
-app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("hello world");

@@ -1,0 +1,23 @@
+services:
+  frontend:
+    build: /client
+    ports:
+     - "5173:5173"
+    networks:
+      - mern
+    environment:
+      - VITE_APP_NOT_SECRET_CODE=http://localhost:5000
+  backend:
+    build: /server
+    ports:
+      - "5000:5000"
+    networks:
+      - mern
+    environment:
+      - MONGO_URI=mongodb+srv://bhushanharvard50:MongoDB'24@clusterzero.3yk3x.mongodb.net/myBlogDB
+    depends_on:
+      - frontend
+
+networks:
+  mern:
+    driver: bridge

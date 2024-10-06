@@ -16,9 +16,6 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}`);
-});
 
 app.use("/auth", signInRoute);
 app.use("/post", postRoute);

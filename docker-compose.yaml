@@ -6,7 +6,7 @@ services:
     networks:
       - mern
     environment:
-      - VITE_APP_NOT_SECRET_CODE=http://localhost:5000
+      - VITE_APP_NOT_SECRET_CODE=${VITE_APP_NOT_SECRET_CODE}
   backend:
     build: /server
     ports:
@@ -14,7 +14,7 @@ services:
     networks:
       - mern
     environment:
-      - MONGO_URI=mongodb+srv://bhushanharvard50:MongoDB'24@clusterzero.3yk3x.mongodb.net/myBlogDB
+      - MONGO_URI=${MONGO_URI}
     depends_on:
       - frontend
 

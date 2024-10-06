@@ -9,7 +9,7 @@ export const DataProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${process.env.API_DOMIAN}/post/getblogpost`,
+          `${import.meta.env.VITE_APP_NOT_SECRET_CODE}/post/getblogpost`,
           {
             method: "GET",
             headers: {

@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-function mongoDb() {
-  mongoose.connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${MONGO_PASS}'24@clusterzero.3yk3x.mongodb.net/${process.env.MONGO_DB}`
-  );
+
+function mongoDb(mongo_uri) {
+  mongoose.connect(mongo_uri);
   console.log("connected to mongo");
 }
 

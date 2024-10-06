@@ -23,7 +23,7 @@ const SignIn = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${process.env.API_DOMIAN}/auth/signin`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_NOT_SECRET_CODE}/auth/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

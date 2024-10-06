@@ -15,7 +15,7 @@ const FeatPost = () => {
   };
 
   return (
-    <div className="container px-4 mx-auto my-20 border-2 border-black">
+    <div className="container px-4 mx-auto my-20 border-none">
       <div className="text-center space-y-4 mb-10">
         <h2 className="text-5xl font-bold text-gray-900">Featured Blogs</h2>
         <p className="text-gray-600">
@@ -38,7 +38,7 @@ const FeatPost = () => {
               <Link
                 to={`/blogpost/${post.title}`}
                 key={index}
-                className="h-[410px] block transition-transform transform hover:scale-105 border-2 border-black"
+                className="h-[410px] block transition-transform transform hover:scale-105 border-none"
               >
                 <div className="bg-white shadow-lg overflow-hidden h-full">
                   <div className="h-48">
@@ -48,7 +48,7 @@ const FeatPost = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="sm:p-4 p-1 border-2 border-black flex flex-col items-start justify-between space-y-4">
+                  <div className="sm:p-4 p-1 border-none flex flex-col items-start justify-between space-y-4">
                     <h4 className="font-semibold text-xl w-full">
                       {post.title}
                     </h4>

@@ -140,8 +140,8 @@ const BlogPost = () => {
 
   return (
     <>
-      <div className="flex items-start justify-center container border-2 border-black">
-        <div className="flex flex-col border-2 border-black items-center justify-center gap-2 w-fit m-2">
+      <div className="flex items-start justify-center container ">
+        <div className="flex flex-col  items-center justify-center gap-2 w-fit m-2">
           <div onClick={handleToggleLike} className="hover:cursor-pointer">
             {isLiked ? (
               <svg
@@ -216,11 +216,11 @@ const BlogPost = () => {
             )}
           </div>
         </div>
-        <div className="max-w-7xl mx-auto py-4 border-2 border-black">
+        <div className="max-w-7xl mx-auto py-4 ">
           {blogPost ? (
             <>
               <div
-                className="border-2 border-black h-80 overflow-hidden flex items-center justify-center"
+                className=" h-80 overflow-hidden flex items-center justify-center"
                 style={{
                   backgroundImage: `url(${blogPost.image})`,
                   backgroundSize: "cover",
@@ -231,8 +231,8 @@ const BlogPost = () => {
                   {blogPost.title}
                 </h2>
               </div>
-              <div className="border-2 border-black flex items-start justify-center relative">
-                <div className="border-2 border-black w-1/4 sticky top-16 sm:block hidden p-2">
+              <div className=" flex items-start justify-center relative">
+                <div className=" w-1/4 sticky top-16 sm:block hidden p-2">
                   <h6>Table Of Content</h6>
                   <ul className="list-decimal list-inside space-y-2 py-3">
                     {toc.map((item) => (
@@ -250,14 +250,14 @@ const BlogPost = () => {
                     ))}
                   </ul>
                 </div>
-                <div className="sm:w-3/4 w-full border-2 border-black flex items-center justify-center flex-col">
-                  <div className="border-2 border-black w-full h-2/3 px-2 text-justify">
+                <div className="sm:w-3/4 w-full  flex items-center justify-center flex-col">
+                  <div className=" w-full h-2/3 px-2 text-justify">
                     <p ref={contentRef}></p>
                   </div>
                 </div>
               </div>
               {relatedPosts.length > 0 && (
-                <div className="mt-10 p-3 border-2 border-black">
+                <div className="mt-10 p-3 ">
                   <h3 className="text-2xl font-bold">Related Blogs</h3>
                   <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 mt-4">
                     {relatedPosts.map((relatedPost) => (

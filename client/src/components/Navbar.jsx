@@ -51,6 +51,7 @@ const Navbar = () => {
     localStorage.clear();
     setIsLoggedIn(false);
     setSubMenu(false);
+    window.location.reload();
   };
 
   return (
@@ -62,7 +63,7 @@ const Navbar = () => {
         <h1 className="font-bold text-lg">BlogWebb</h1>
       </div>
       <div className="md:w-1/3 w-1/2 flex items-center justify-end">
-        <div className="sm:flex hidden border-2 border-black rounded-full w-fit items-center justify-between gap-4 font-semibold px-4 py-2 md:mx-auto">
+        <div className="sm:flex hidden border-none rounded-full w-fit items-center justify-between gap-4 font-semibold px-4 py-2 md:mx-auto">
           {navBtnGrp.map((btn, index) => (
             <button key={index}>
               <Link to={btn.nav}>{btn.title}</Link>

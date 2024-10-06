@@ -15,7 +15,7 @@ const Carousels = () => {
   return (
     <>
       <div className="flex w-[95%] mx-auto my-4 space-x-4">
-        <div className="h-96 overflow-hidden border-2 border-black md:w-2/3 w-full relative group flex items-center justify-center">
+        <div className="h-96 overflow-hidden border-none md:w-2/3 w-full relative group flex items-center justify-center">
           <Carousel className="flex items-center justify-center overflow-hidden w-full rounded-3xl">
             {slides.map((blog, index) => (
               <Carousel.Item
@@ -37,10 +37,8 @@ const Carousels = () => {
             ))}
           </Carousel>
         </div>
-        <div className="border-2 border-black w-1/3 md:flex hidden items-end justify-center flex-col space-y-3 italic px-2">
-          <h1 className="border-2 border-black text-5xl font-bold">
-            ...InsightInk
-          </h1>
+        <div className="border-none w-1/3 md:flex hidden items-end justify-center flex-col space-y-3 italic px-2">
+          <h1 className="border-none text-5xl font-bold">...InsightInk</h1>
           <p className="font-medium">
             Transforming Thoughts into Meaningful Narratives.
           </p>

@@ -9,17 +9,17 @@ const HomePosts = () => {
     <>
       <div className="flex flex-col space-y-24 mt-20 w-[95%] mx-auto">
         <div className="flex items-center justify-center sm:flex-row flex-col sm:mx-10 mx-2 sm:space-x-10">
-          <div className="border-2 border-black sm:w-1/3 w-full self-stretch bg-[#f4f6ad]">
-            <p className="sticky top-20 border-2 border-black p-4 text-xl">
+          <div className="border-none sm:w-1/3 w-full self-stretch bg-[#f4f6ad]">
+            <p className="sticky top-20 border-none p-4 text-xl">
               Read it all
               <h1 className="lg:text-6xl sm:text-4xl text-2xl font-bold">
                 Health & Wellness
               </h1>
             </p>
           </div>
-          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-2 border-black">
+          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-none">
             {blogPosts
-              .filter((post) => post.tags.includes("First"))
+              .filter((post) => post.tags.includes("Health & Wellness"))
               .slice(-4)
               .map((post, index) => {
                 const formattedDate = new Date(post.date).toLocaleDateString(
@@ -74,17 +74,17 @@ const HomePosts = () => {
           </div>
         </div>
         <div className="flex items-center justify-center sm:flex-row flex-col sm:mx-10 mx-2 sm:space-x-10">
-          <div className="border-2 border-black sm:w-1/3 w-full self-stretch bg-[#e1937f]">
-            <p className="sticky top-20 border-2 border-black p-4 text-xl">
+          <div className="border-none sm:w-1/3 w-full self-stretch bg-[#e1937f]">
+            <p className="sticky top-20 border-none p-4 text-xl">
               Read it all
               <h1 className="lg:text-6xl sm:text-4xl text-2xl font-bold">
-                Fashion & Beauty
+                Technology
               </h1>
             </p>
           </div>
-          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-2 border-black">
+          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-none">
             {blogPosts
-              .filter((post) => post.tags.includes("First"))
+              .filter((post) => post.tags.includes("Technology"))
               .slice(-4)
               .map((post, index) => {
                 const formattedDate = new Date(post.date).toLocaleDateString(
@@ -139,15 +139,15 @@ const HomePosts = () => {
           </div>
         </div>
         <div className="flex items-center justify-center sm:flex-row flex-col sm:mx-10 mx-2 sm:space-x-10">
-          <div className="border-2 border-black sm:w-1/3 w-full self-stretch bg-[#dceefd]">
-            <p className="sticky top-20 border-2 border-black p-4 text-xl">
+          <div className="border-none sm:w-1/3 w-full self-stretch bg-[#dceefd]">
+            <p className="sticky top-20 border-none p-4 text-xl">
               Read it all
               <h1 className="lg:text-6xl sm:text-4xl text-2xl font-bold">
                 Travel
               </h1>
             </p>
           </div>
-          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-2 border-black">
+          <div className="sm:w-2/3 w-full grid lg:grid-cols-2 grid-cols-1 grid-rows-2 gap-4 border-none">
             {blogPosts
               .filter((post) => post.tags.includes("First"))
               .slice(-4)

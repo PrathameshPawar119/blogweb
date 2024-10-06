@@ -15,7 +15,7 @@ const Tags = () => {
         </p>
       </div>
       <h1 className="sm:text-4xl text-2xl font-bold"></h1>
-      <div className="flex items-start justify-start flex-wrap gap-6 border-2 border-black">
+      <div className="flex items-start justify-start flex-wrap gap-6 border-none">
         {taggedBlog.map((item, itemIndex) => (
           <Link
             to={`/tags/${item.tag}`}

@@ -170,6 +170,8 @@ const NewBlog = () => {
     "Programming",
     "Algorithm",
     "Data Structure",
+    "Travel",
+    "Health & Wellness",
   ];
 
   return (
@@ -240,7 +242,7 @@ const NewBlog = () => {
               Post
             </button>
           </div>
-          <div className="p-2 md:w-2/3 w-full flex flex-col border-2 border-black">
+          <div className="p-2 md:w-2/3 w-full flex flex-col border-none">
             <ReactQuill
               theme="snow"
               modules={modules}
